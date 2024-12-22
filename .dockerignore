@@ -1,0 +1,13 @@
+build/
+target/
+dist/
+bin/
+
+.vscode/
+.idea/
+.git/
+
+*.log
+
+
+
