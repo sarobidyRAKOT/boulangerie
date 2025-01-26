@@ -1,0 +1,8 @@
+<svg width="365" height="90" viewBox="0 0 365 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="90" cy="40" r="40" fill="#D8E3FF"/>
+  
+  <!-- Texte utilisant la police Manrope -->
+  <text x="230" y="40" text-anchor="middle" font-family="Nunito" font-size="48" font-weight="bold" fill="#504B8E" dy=".3em">
+    Boulangerie
+  </text>
+</svg>
