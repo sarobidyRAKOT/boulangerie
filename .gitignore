@@ -6,5 +6,6 @@ build/
 target/
 dist-file/
 bin/
+lib/
 
 Looping.lo1
