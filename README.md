@@ -9,4 +9,11 @@ Apache-ant (pour la compilation)
 bootstrap 4 (installation par node)
 
 
+
+
+
 lancer la commande 
+
+# LIBRAIRIE (*.jar)
+    . servlet-api.jar (servlet compatibe a wildfly 10)
+    . postgresql.jar
