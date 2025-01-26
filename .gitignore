@@ -8,5 +8,6 @@ dist-file/
 bin/
 lib/
 
+
 Looping.lo1
-change-jdk.bat
+change_jdk.bat
