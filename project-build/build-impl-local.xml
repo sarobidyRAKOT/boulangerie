@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<project name="build-test" default="default" basedir="..">
+<project name="build-test" default="[default]" basedir="..">
 
 
     <!-- PROPERTY -->
@@ -14,6 +14,11 @@
     <property name="war.name" value="boulangerie.war"/>
     <property name="wildfly.dir" value="C:/WILDFLY/wildfly-10.0.0"/>
 
+    <!-- java properties -->
+    <property name="JAVA_HOME" value="C:/Program Files/Java/jdk1.8.0_211"/>
+    <property name="PATH" value="${JAVA_HOME}/bin:${env.PATH}"/>
+
+
     <path id="classpath" >
         <fileset dir="${lib.dir}" >
             <include name="**/*.jar" />
@@ -25,13 +30,20 @@
     </tstamp>
     <!-- PROPERTY DONE -->
 
-    
-    
 
-    <target name="[init]">
+    <target name="java-home">
+        <exec executable="${JAVA_HOME}/bin/java">
+            <env key="JAVA_HOME" value="${JAVA_HOME}"/>
+            <env key="PATH" value="${PATH}"/>
+            <arg value="-version"/>
+        </exec>
+    </target>
+
+    <target name="[init]" depends="java-home">
         <echo> ------ Initialize - ${date_duJour} ------ </echo>
         <echo> JDK-VERSION: ${ant.java.version} - ANT-VERSION: ${ant.version} </echo>
     </target>
+
 
     <target name="clean" depends="[init]">
         <echo> ------ [Clean Start] ------ </echo>
@@ -40,7 +52,8 @@
         <echo> ------ [Clean Done] ------ </echo>
     </target>
     
-    <import file="build-web-default.xml" />
+    <import file="build-web-default.xml"/> 
+
     <target name="build" depends="init-web">
         <echo> ------ [Create dir Start] ------ </echo>
         <mkdir dir="${build.dir}" /> <!-- CONTENANT LE DOSSIER WEB DEJA COMPILER -->

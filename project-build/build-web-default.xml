@@ -7,7 +7,7 @@
     <property name="index.file" value="${web.dir}/index.jsp"/>
     <property name="web.xml" value="${web-inf.dir}/web.xml"/>
 
-    <target name="init-web">
+    <target name="init-web" depends="clean">
         <mkdir dir="${web.dir}"/>
         <mkdir dir="${web-inf.dir}"/>
         <touch file="${index.file}"/>

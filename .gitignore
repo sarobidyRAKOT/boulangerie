@@ -6,8 +6,7 @@ build/
 target/
 dist-file/
 bin/
-lib/
 
 
 Looping.lo1
-change_jdk.bat
+./change_jdk.bat
