@@ -1,25 +1,4 @@
 
-CREATE OR REPLACE FUNCTION prix_vente ()
-RETURNS TRIGGER AS $$ 
-BEGIN 
-    IF (TG_OP = 'INSERT') THEN
-        INSERT INTO prix_vente (prix, daty, id_produit)
-        VALUES (NEW.prix, CURRENT_DATE, NEW.id_produit);
-    ELSIF (TG_OP = 'UPDATE') THEN
-        INSERT INTO prix_vente (prix, daty, id_produit)
-        VALUES (OLD.prix, CURRENT_DATE, OLD.id_produit);
-    END IF;
-    RETURN NEW;
-END;
-$$ LANGUAGE plpgsql;
-
-CREATE TRIGGER trigger_prix_vente
-AFTER INSERT OR UPDATE ON produit
-FOR EACH ROW
-EXECUTE FUNCTION prix_vente();
-
-
-
 
 
 -- ============================================ VUE =========================================
@@ -57,4 +36,3 @@ SELECT
     ROUND((v.prix_ttl * v.commission) / 100, 2) commission
 FROM vente v 
 LEFT JOIN vendeur vend ON v.id_vendeur = vend.id_vendeur;
-

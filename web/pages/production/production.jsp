@@ -3,7 +3,7 @@
     <div class="card">
       <div class="card-body">
         <h4 class="card-title">PRODUCTIONS</h4>
-        <form action="${pageContext.request.contextPath}/insertionIroduction" method="POST" class="forms-sample">
+        <form action="${pageContext.request.contextPath}/insertionProduction" method="POST" class="forms-sample">
           <div class="form-group">
             <label>Quantite ingredient usuel en n fois</label>
             <input type="number" name="n_ingredient" class="form-control form-control-lg" placeholder="Quantite ingredient multiplie par ..." aria-label="Quantite ingredient multiplie par ...">

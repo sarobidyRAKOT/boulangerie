@@ -11,7 +11,7 @@
     <p class="card-description">
       Page d'insertion INGREDIENTS
     </p>
-    <form action="${pageContext.request.contextPath}/insertion_ingredient" method="POST" class="forms-sample">
+    <form action="${pageContext.request.contextPath}/insertionIngredient" method="POST" class="forms-sample">
       <div class="form-group">
         <label>Non ingredient</label>
         <input type="text" name="nom" class="form-control form-control-lg" placeholder="Non de l'ingredient" aria-label="Non de l'ingredient">

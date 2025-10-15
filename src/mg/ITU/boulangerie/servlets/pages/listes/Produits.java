@@ -1,7 +1,6 @@
 package mg.ITU.boulangerie.servlets.pages.listes;
 
 import java.io.IOException;
-import java.lang.reflect.Field;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -14,7 +13,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import mg.ITU.boulangerie.annotations.Recherche;
 import mg.ITU.boulangerie.beans.Produit;
 import mg.ITU.boulangerie.beans.Produit_mois;
 import mg.ITU.boulangerie.utils.Util_BD;

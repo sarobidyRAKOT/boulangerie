@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import mg.ITU.boulangerie.utils.Util_BD;
 
-@WebServlet (urlPatterns = "/ingredient")
+@WebServlet (urlPatterns = "/insertionIngredient")
 public class Ingredient extends HttpServlet  {
 
     
@@ -21,7 +21,7 @@ public class Ingredient extends HttpServlet  {
         response.setContentType("text/html;charset=UTF-8");
         
         String nom = (String) request.getParameter("nom");
-        Integer id_unite = Integer.parseInt((String) request.getParameter("id_unite"));
+        String id_unite = (String) request.getParameter("id_unite");
 
         // System.out.println("IO "+nom+" "+prix+" "+id_categorie+" "+id_unite);
 
@@ -34,7 +34,7 @@ public class Ingredient extends HttpServlet  {
             conn.setAutoCommit(false);
             i.insert(conn);
             conn.commit();
-            response.sendRedirect("ingredient_produit");
+            response.sendRedirect("ingredient");
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
             request.getRequestDispatcher("pages/errors/error-4004.jsp").forward(request, response);

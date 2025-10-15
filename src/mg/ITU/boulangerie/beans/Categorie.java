@@ -8,10 +8,10 @@ import java.util.ArrayList;
 
 public class Categorie {
     
-    Integer id;
+    String id;
     String nom;
 
-    public Categorie (Integer id, String nom) {
+    public Categorie (String id, String nom) {
         this.id = id;
         this.nom = nom;
     }
@@ -29,7 +29,7 @@ public class Categorie {
             rs = pstmt.executeQuery();
 
             while (rs.next()) {
-                Integer id = rs.getInt("id_categorie");
+                String id = rs.getString("id_categorie");
                 String nom = rs.getString("nom");
                 cataegs.add(new Categorie(id, nom));
             }
@@ -58,7 +58,7 @@ public class Categorie {
             rs = pstmt.getGeneratedKeys();
             if (rs.next()) {
                 // Retourner l'ID généré
-                this.setId(rs.getInt(1));
+                this.setId(rs.getString(1));
             } 
             return nbr;
 
@@ -71,15 +71,9 @@ public class Categorie {
         return 0;
     }
 
-    public Integer getId() {
-        return id;
-    }
-    public String getNom() {
-        return nom;
-    }
+    public String getId() {return id; }
+    public String getNom() {return nom; }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+    public void setId(String id) {this.id = id; }
 
 }

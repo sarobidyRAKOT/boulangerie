@@ -18,6 +18,7 @@
                 <li class="nav-item my-n1"><a class="nav-link mt-2 mr-3" href="${pageContext.request.contextPath}/formule"> Formule </a></li>
                 <li class="nav-item my-n1"><a class="nav-link mt-2 mr-3" href="${pageContext.request.contextPath}/produitMois">Produit du mois</a></li>
                 <li class="nav-item my-n1"><a class="nav-link mt-2 mr-3" href="${pageContext.request.contextPath}/vente_venteDetail">vente</a></li>
+                <li class="nav-item my-n1"><a class="nav-link mt-2 mr-3" href="${pageContext.request.contextPath}/PrixVente">Prix vente</a></li>
               </ul>
             </div>
           </li>
@@ -36,7 +37,7 @@
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="${pageContext.request.contextPath}/choisir_produit">
+            <a class="nav-link" href="${pageContext.request.contextPath}/choisirProduit">
               <i class="ti-settings menu-icon  mt-n2"></i>
               <span class="menu-title">Productions</span>
             </a>
@@ -54,8 +55,20 @@
                 <li class="nav-item my-n1"><a class="nav-link mt-2 mr-3" href="${pageContext.request.contextPath}/listeProduit"> Produits </a></li>
                 <li class="nav-item my-n1"><a class="nav-link mt-2 mr-3" href="${pageContext.request.contextPath}/listeVente"> Ventes </a></li>
                 <li class="nav-item my-n1"><a class="nav-link mt-2 mr-3" href="${pageContext.request.contextPath}/listeVenteClient"> Achats clients </a></li>
-                <li class="nav-item my-n1"><a class="nav-link mt-2 mr-3" href="${pageContext.request.contextPath}/listeHistoriqueProduitsMois2024"> Produits conseillee 2024 </a></li>
-                <li class="nav-item my-n1"><a class="nav-link mt-2 mr-3" href="${pageContext.request.contextPath}/listeCommission"> Commission </a></li>
+                <li class="nav-item my-n1"><a class="nav-link mt-2 mr-3" href="${pageContext.request.contextPath}/listeCommission"> Commission </a></li>                
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#historiques" aria-expanded="false" aria-controls="historiques">
+              <i class="ti-list menu-icon  mt-n2"></i>
+              <span class="menu-title">Historiques</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="historiques">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item my-n1"><a class="nav-link mt-2 mr-3" href="${pageContext.request.contextPath}/listeHistoriqueProduitsMois2024"> Produits 2024 </a></li>
+                <li class="nav-item my-n1"><a class="nav-link mt-2 mr-3" href="${pageContext.request.contextPath}/listeHistoriquePrixProduit"> Historique prix </a></li>
                 
               </ul>
             </div>

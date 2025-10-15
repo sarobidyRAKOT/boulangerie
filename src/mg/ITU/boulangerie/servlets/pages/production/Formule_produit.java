@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession;
 import mg.ITU.boulangerie.beans.Formule;
 import mg.ITU.boulangerie.utils.Util_BD;
 
-@WebServlet (urlPatterns = "/formule_produit")
+@WebServlet (urlPatterns = "/formuleProduit")
 public class Formule_produit extends HttpServlet  {
 
     

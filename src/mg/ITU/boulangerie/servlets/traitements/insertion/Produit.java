@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import mg.ITU.boulangerie.beans.Erreur;
+import mg.ITU.boulangerie.beans.Prix_vente;
 import mg.ITU.boulangerie.utils.Util_BD;
 
 @WebServlet (urlPatterns = "/insertion_produit")
@@ -20,37 +22,41 @@ public class Produit extends HttpServlet  {
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-        Integer id_categorie = Integer.parseInt((String) request.getParameter("id_categorie"));
+        String id_categorie = (String) request.getParameter("id_categorie");
         String nom = (String) request.getParameter("nom");
-        Integer id_unite = Integer.parseInt((String) request.getParameter("id_unite"));
-        Double prix = Double.parseDouble((String) request.getParameter("prix"));
-
-        // System.out.println("IO "+nom+" "+prix+" "+id_categorie+" "+id_unite);
-
-        mg.ITU.boulangerie.beans.Produit p = new mg.ITU.boulangerie.beans.Produit(nom, prix, id_categorie, id_unite);
+        String id_unite = (String) request.getParameter("id_unite");
+        String prix = (String) request.getParameter("prix");
+        
+        
         Connection conn = null;
-
+        
         try {
+            mg.ITU.boulangerie.beans.Produit p = new mg.ITU.boulangerie.beans.Produit(nom, prix, id_categorie, id_unite);
             Util_BD udb = Util_BD.get_Instance();
             conn = udb.connect();
             conn.setAutoCommit(false);
-            p.insert(conn);
+            p.insert_setID (conn);
+
+            Prix_vente.insert_currentDaty(conn, p.getId(), "NV PRODUIT", p.getPrix());
             conn.commit();
+            conn.close();
             response.sendRedirect("produit");
+
+
         } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
-            request.getRequestDispatcher("pages/errors/error-4004.jsp").forward(request, response);
-        }
-        finally {
-            if (conn != null) {
-                try { conn.close();
-                } catch (SQLException e) {
-                    e.printStackTrace(); 
-                }
+            try { conn.rollback();
+            } catch (SQLException e1) {
+                e1.printStackTrace();
             }
+            e.printStackTrace();
+            request.setAttribute("error", e.getMessage());
+            request.getRequestDispatcher("pages/errors/error-404.jsp").forward(request, response);
+        } catch (NullPointerException | NumberFormatException | Erreur e) {
+            e.printStackTrace();
+            request.setAttribute("error", e.getMessage());
+            request.getRequestDispatcher("pages/errors/error-500.jsp").forward(request, response);
         }
         
-        // request.getRequestDispatcher("pages/p.jsp").forward(request, response);
     }
 
     @Override

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import mg.ITU.boulangerie.beans.Erreur;
 import mg.ITU.boulangerie.beans.Vente_detail;
 import mg.ITU.boulangerie.utils.Util_BD;
 
@@ -24,27 +25,24 @@ public class Vente extends HttpServlet  {
 
         String[] id_produit = request.getParameterValues("id_produit[]");
         String[] quantite_produit = request.getParameterValues("quantite_produit[]");
-        String[] prix_unitaire = request.getParameterValues("prix_unitaire[]");
+
         String daty = (String) request.getParameter("daty");
         String id_client = request.getParameter("id_client");
         String id_vendeur = request.getParameter("id_vendeur");
         
-        double prix_ttl = 0;
-        for (int i = 0; i < id_produit.length; ++ i) {
-            prix_ttl += Double.parseDouble(prix_unitaire[i]) * Integer.parseInt(quantite_produit[i]);
-        }
+
         Connection conn = null;
 
         try {
             Util_BD udb = Util_BD.get_Instance();
             conn = udb.connect();
             conn.setAutoCommit(false);
-
-            mg.ITU.boulangerie.beans.Vente vente = new mg.ITU.boulangerie.beans.Vente(null, prix_ttl, daty, Integer.parseInt(id_client));    
-            vente.setId_vendeur(Integer.parseInt(id_vendeur));
+            
+            mg.ITU.boulangerie.beans.Vente vente = new mg.ITU.boulangerie.beans.Vente(daty, Integer.parseInt(id_client), Integer.parseInt(id_vendeur));    
+            String[][] data = vente.conf_venteDetail(conn, id_produit, quantite_produit);         
             vente.insert_setID(conn); // insertion
 
-            Vente_detail.insert(conn, quantite_produit, prix_unitaire, id_produit, vente.getId());
+            Vente_detail.insert(conn, data, vente.getId());
 
             conn.commit();
             conn.close();
@@ -57,10 +55,11 @@ public class Vente extends HttpServlet  {
                 e1.printStackTrace();
             }
             e.printStackTrace();
+            request.setAttribute("error", e.getMessage());
             request.getRequestDispatcher("pages/errors/error-404.jsp").forward(request, response);
-        } catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException | Erreur e) {
             e.printStackTrace();
-            request.setAttribute("error", e);
+            request.setAttribute("error", e.getMessage());
             request.getRequestDispatcher("pages/errors/error-500.jsp").forward(request, response);
         }
     }

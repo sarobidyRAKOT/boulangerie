@@ -6,11 +6,10 @@ document.addEventListener("DOMContentLoaded", function () {
         // Vérifiez si les champs précédents sont remplis
         const lastRow = produitContainer.querySelector(".produit-row:last-child");
         const lastQuantite_produit = lastRow.querySelector("input[name='quantite_produit[]']").value;
-        const lastPrix_unitaire = lastRow.querySelector("input[name='prix_unitaire[]']").value;
 
-        if (!lastQuantite_produit || lastQuantite_produit.trim() === "" 
-            || !lastPrix_unitaire || lastPrix_unitaire.trim() === "") {
-            alert("Veuillez remplir la quantitee et le prix unitaire pour le dernier produit avant d'en ajouter un autre.");
+
+        if (!lastQuantite_produit || lastQuantite_produit.trim() === "") {
+            alert("Veuillez remplir la quantitée pour le dernier produit avant d'en ajouter un autre.");
             return;
         }
 

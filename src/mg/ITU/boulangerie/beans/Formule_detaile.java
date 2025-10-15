@@ -77,6 +77,7 @@ public class Formule_detaile {
                 Formule_detaile fd = new Formule_detaile(id_formule, id_ingredient, quantite_ingredient);
                 fd.setNom_ingredient(nom_ingredient);
                 fd.setNom_unite(nom_unite);
+                
                 formule_detailes.add(fd);
             }
         } catch (SQLException e) {

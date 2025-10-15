@@ -34,7 +34,7 @@ public class Produit_mois extends HttpServlet  {
                 ++ index;
             }
             
-            ArrayList <mg.ITU.boulangerie.beans.Produit> produits = Produit.getAll(conn);
+            ArrayList <mg.ITU.boulangerie.beans.Produit> produits = Produit.getAll(conn, null);
             
             request.setAttribute("mois", mois);
             request.setAttribute("produits", produits);

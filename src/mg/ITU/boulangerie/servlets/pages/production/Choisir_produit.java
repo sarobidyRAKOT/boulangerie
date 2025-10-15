@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import mg.ITU.boulangerie.beans.Produit;
+import mg.ITU.boulangerie.beans.display.Produit_detail;
 import mg.ITU.boulangerie.utils.Util_BD;
 
 @WebServlet (urlPatterns = "/choisirProduit")
@@ -26,7 +26,7 @@ public class Choisir_produit extends HttpServlet  {
         try {
             Util_BD udb = Util_BD.get_Instance();
             conn = udb.connect();
-            ArrayList <Produit> produits = Produit.getAll_withDetail(conn);
+            ArrayList <Produit_detail> produits = Produit_detail.getAll (conn, null);
 
             conn.close();
             request.setAttribute("produits", produits);

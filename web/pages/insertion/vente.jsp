@@ -43,7 +43,7 @@
           </div>
           <div id="produit-container">
             <div class="row produit-row">
-              <div class="col-md-4">
+              <div class="col-md-6">
                 <div class="form-group row">
                   <label class="col-sm-3 col-form-label">Produits</label>
                   <div class="col-sm-9">
@@ -55,19 +55,11 @@
                   </div>
                 </div>
               </div>
-              <div class="col-md-4">
+              <div class="col-md-6">
                 <div class="form-group row">
                   <label class="col-sm-4 col-form-label">Quantite produit</label>
                   <div class="col-sm-8">
                     <input name="quantite_produit[]" class="form-control" placeholder="Quantitee ingredient" required>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="form-group row">
-                  <label class="col-sm-4 col-form-label">Prix unitaire </label>
-                  <div class="col-sm-8">
-                    <input name="prix_unitaire[]" class="form-control" placeholder="Quantitee ingredient" required>
                   </div>
                 </div>
               </div>
@@ -89,6 +81,5 @@
     </div>
   </div>
 </div>
-
 
 <script src="${pageContext.request.contextPath}/js/nvProduit.js"></script>

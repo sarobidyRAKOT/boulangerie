@@ -151,16 +151,16 @@ public class Vente_detail {
     }
 
 
-    public static int insert (Connection conn, String[] quantite_produits, String[] prix_unitaires, String[] id_produits, Integer id_vente) throws SQLException {
+    public static int insert (Connection conn, String[][] data, Integer id_vente) throws SQLException {
 
         PreparedStatement pstmt = null;
         String req = "INSERT INTO vente_detail (quantite_produit, prix_unitaire, id_vente, id_produit) VALUES";
 
 
-        for (int i = 0; i < id_produits.length; i++) {
-            int id = Integer.parseInt(id_produits[i]);
-            int qtt = Integer.parseInt (quantite_produits[i]);
-            Double PU = Double.parseDouble(prix_unitaires[i]);
+        for (int i = 0; i < data.length; i++) {
+            int id = Integer.parseInt(data[i][0]);
+            double qtt = Double.parseDouble (data[i][1]);
+            Double PU = Double.parseDouble(data[i][2]);
 
             req += "("+qtt+","+PU+","+id_vente+","+id+"),";
         }

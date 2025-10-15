@@ -33,7 +33,7 @@ public class Unite extends HttpServlet  {
             conn = udb.connect();
             conn.setAutoCommit(false);
             
-            mg.ITU.boulangerie.beans.Unite unite = new mg.ITU.boulangerie.beans.Unite(null, nom, ref);
+            mg.ITU.boulangerie.beans.Unite unite = new mg.ITU.boulangerie.beans.Unite(nom, nom, ref);
             unite.insert_setID(conn);
             conn.commit();
             conn.close();

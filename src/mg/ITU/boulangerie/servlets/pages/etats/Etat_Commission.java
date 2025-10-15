@@ -10,11 +10,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import mg.ITU.boulangerie.beans.Categorie;
 import mg.ITU.boulangerie.beans.Vendeur;
-import mg.ITU.boulangerie.beans.Vente_detail;
 import mg.ITU.boulangerie.utils.Util_BD;
 
 @WebServlet (urlPatterns = "/etatCommission")

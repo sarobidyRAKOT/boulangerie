@@ -10,7 +10,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import mg.ITU.boulangerie.beans.Vente_client;
 import mg.ITU.boulangerie.utils.Util_BD;
@@ -25,6 +24,7 @@ public class VenteClient extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
 
         int page = 1;
+        
         if (request.getParameter("page") != null) {
             page = Integer.parseInt(request.getParameter("page"));
         }

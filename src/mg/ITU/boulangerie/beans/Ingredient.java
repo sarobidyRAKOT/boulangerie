@@ -11,16 +11,16 @@ public class Ingredient {
 
 
     Integer id;
-    Integer id_unite;
+    String id_unite;
     String nom;
 
 
-    public Ingredient (Integer id, String nom, Integer id_unite) {
+    public Ingredient (Integer id, String nom, String id_unite) {
         this.setId(id);
         setNom(nom);
         this.setId_unite(id_unite);
     }
-    public Ingredient (String nom, Integer id_unite) {
+    public Ingredient (String nom, String id_unite) {
         setNom(nom);
         this.setId_unite(id_unite);
     }
@@ -42,7 +42,7 @@ public class Ingredient {
             while (rs.next()) {
                 Integer id = rs.getInt("id_ingredient");
                 String nom = rs.getString("nom");
-                Integer id_unite = rs.getInt ("id_unite");
+                String id_unite = rs.getString ("id_unite");
 
                 ingredients.add(new Ingredient(id, nom, id_unite));
                 // unites.add(new Ingredient(id, nom, ref));
@@ -65,7 +65,7 @@ public class Ingredient {
         try {
             pstmt = conn.prepareStatement(req);
             pstmt.setString(1, this.getNom());
-            pstmt.setInt(2, this.getId_unite());
+            pstmt.setString(2, this.getId_unite());
 
             return pstmt.executeUpdate();
 
@@ -81,11 +81,11 @@ public class Ingredient {
 
 
     public Integer getId() { return id; }
-    public Integer getId_unite() { return id_unite; }
+    public String getId_unite() { return id_unite; }
     public String getNom() { return nom; }
 
     public void setId(Integer id) { this.id = id; }
-    public void setId_unite(Integer id_unite) { this.id_unite = id_unite; }
+    public void setId_unite(String id_unite) { this.id_unite = id_unite; }
     public void setNom(String nom) { this.nom = nom; }
     
 }

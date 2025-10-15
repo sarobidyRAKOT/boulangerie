@@ -1,8 +1,9 @@
 <%@page import="mg.ITU.boulangerie.beans.*" %> 
+<%@page import="mg.ITU.boulangerie.beans.display.*" %> 
 <%@page import="java.util.ArrayList" %> 
 
 <%
-  ArrayList <Produit> produits = (ArrayList<Produit>) request.getAttribute("produits");
+  ArrayList <Produit_detail> produits = (ArrayList<Produit_detail>) request.getAttribute("produits");
 %>
 
 <div class="row">
@@ -18,7 +19,7 @@
             <thead>
               <tr>
                 <th>#</th>
-                <th>Nom produit</th>
+                <th>produit</th>
                 <th>Categorie</th>
                 <th>Prix</th>
                 <th>Quantite</th>
@@ -27,16 +28,16 @@
               </tr>
             </thead>
             <tbody>
-              <% for (Produit produit : produits) { %>
+              <% for (Produit_detail produit : produits) { %>
               <tr>
-                <td><%=produit.getId()%></td>
+                <td><%=produit.getId_produit()%></td>
                 <td><%=produit.getNom()%></td>
-                <td><%=produit.getNom_categorie()%></td>
+                <td><%=produit.getId_categorie()%></td>
                 <td><%=produit.getPrix()%> ariary</td>
-                <td><%=produit.getQuantite()%></td>
-                <td><%=produit.getNom_unite()%></td>
+                <td><%=produit.getReste()%></td>
+                <td><%=produit.getId_unite()%></td>
                 <td>
-                  <a class="btn btn-sm btn-block btn-success" href="${pageContext.request.contextPath}/formuleProduit?id_produit=<%=produit.getId()%>">
+                  <a class="btn btn-sm btn-block btn-success" href="${pageContext.request.contextPath}/formuleProduit?id_produit=<%=produit.getId_produit()%>">
                     Choisir
                   </a>
                 </td>

@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Produit_mois {
@@ -27,11 +28,13 @@ public class Produit_mois {
     public int insert (Connection conn) throws SQLException {
 
         PreparedStatement pstmt = null;
-        String req = "INSERT INTO produit_mois (mois, id_produit) VALUES (?, ?)";
+        String req = "INSERT INTO produit_mois (mois, id_produit, daty) VALUES (?, ?, ?)";
         try {
             pstmt = conn.prepareStatement(req);
             pstmt.setString(1, this.getMois());
             pstmt.setInt(2, this.getId_produit());
+            pstmt.setDate(3, Date.valueOf(LocalDate.now()));
+
 
             return pstmt.executeUpdate();
 
@@ -67,8 +70,8 @@ public class Produit_mois {
                 
                 Integer id = rs.getInt("id_produit");
                 String nom = rs.getString("nom");
-                Integer id_categorie = rs.getInt ("id_categorie");
-                Integer id_unite = rs.getInt ("id_unite");
+                String id_categorie = rs.getString ("id_categorie");
+                String id_unite = rs.getString ("id_unite");
 
 
                 Produit produit= new Produit(id, nom, null, id_categorie, id_unite);
@@ -110,8 +113,8 @@ public class Produit_mois {
                 
                 Integer id = rs.getInt("id_produit");
                 String nom = rs.getString("nom");
-                Integer id_categorie = rs.getInt ("id_categorie");
-                Integer id_unite = rs.getInt ("id_unite");
+                String id_categorie = rs.getString ("id_categorie");
+                String id_unite = rs.getString ("id_unite");
 
 
                 Produit produit= new Produit(id, nom, null, id_categorie, id_unite);

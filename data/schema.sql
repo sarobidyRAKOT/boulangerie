@@ -5,7 +5,7 @@ CREATE TABLE mvt_stock(
 );
 
 CREATE TABLE unite(
-   id_unite SERIAL,
+   id_unite VARCHAR(50) ,
    nom VARCHAR(50)  NOT NULL,
    reference VARCHAR(10)  NOT NULL,
    PRIMARY KEY(id_unite)
@@ -19,13 +19,13 @@ CREATE TABLE achat(
 );
 
 CREATE TABLE categorie(
-   id_categorie SERIAL,
+   id_categorie VARCHAR(50) ,
    nom VARCHAR(50)  NOT NULL,
    PRIMARY KEY(id_categorie)
 );
 
 CREATE TABLE genre(
-   id_genre SERIAL,
+   id_genre VARCHAR(50) ,
    genre VARCHAR(50)  NOT NULL,
    PRIMARY KEY(id_genre),
    UNIQUE(genre)
@@ -34,7 +34,7 @@ CREATE TABLE genre(
 CREATE TABLE ingredient(
    id_ingredient SERIAL,
    nom VARCHAR(50)  NOT NULL,
-   id_unite INTEGER NOT NULL,
+   id_unite VARCHAR(50)  NOT NULL,
    PRIMARY KEY(id_ingredient),
    FOREIGN KEY(id_unite) REFERENCES unite(id_unite)
 );
@@ -42,20 +42,20 @@ CREATE TABLE ingredient(
 CREATE TABLE produit(
    id_produit SERIAL,
    nom VARCHAR(50)  NOT NULL,
-   prix NUMERIC(15,2)   NOT NULL,
-   id_categorie INTEGER NOT NULL,
-   id_unite INTEGER NOT NULL,
+   id_categorie VARCHAR(50)  NOT NULL,
+   id_unite VARCHAR(50)  NOT NULL,
    PRIMARY KEY(id_produit),
    FOREIGN KEY(id_categorie) REFERENCES categorie(id_categorie),
    FOREIGN KEY(id_unite) REFERENCES unite(id_unite)
 );
 
 CREATE TABLE prix_vente(
-   id_hpv SERIAL,
+   id_prixvente SERIAL,
    prix NUMERIC(15,2)   NOT NULL,
+   motif TEXT,
    daty DATE NOT NULL,
    id_produit INTEGER NOT NULL,
-   PRIMARY KEY(id_hpv),
+   PRIMARY KEY(id_prixvente),
    FOREIGN KEY(id_produit) REFERENCES produit(id_produit)
 );
 
@@ -115,7 +115,7 @@ CREATE TABLE client(
    id_client SERIAL,
    nom VARCHAR(50)  NOT NULL,
    tel VARCHAR(50) ,
-   id_genre INTEGER NOT NULL,
+   id_genre VARCHAR(50)  NOT NULL,
    PRIMARY KEY(id_client),
    FOREIGN KEY(id_genre) REFERENCES genre(id_genre)
 );
@@ -123,7 +123,7 @@ CREATE TABLE client(
 CREATE TABLE vendeur(
    id_vendeur SERIAL,
    nom VARCHAR(50)  NOT NULL,
-   id_genre INTEGER NOT NULL,
+   id_genre VARCHAR(50)  NOT NULL,
    PRIMARY KEY(id_vendeur),
    FOREIGN KEY(id_genre) REFERENCES genre(id_genre)
 );
@@ -132,7 +132,7 @@ CREATE TABLE vente(
    id_vente SERIAL,
    prix_ttl NUMERIC(15,2)   NOT NULL,
    daty DATE NOT NULL,
-   commission NUMERIC(15,2)   NOT NULL default 0,
+   commission NUMERIC(15,2)   NOT NULL,
    id_vendeur INTEGER NOT NULL,
    id_client INTEGER NOT NULL,
    PRIMARY KEY(id_vente),

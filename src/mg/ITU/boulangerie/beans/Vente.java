@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class Vente {
     
@@ -13,11 +14,17 @@ public class Vente {
     Date daty;
     double comm = 200_000;
 
-    public Vente (Integer id, Double prix_total, String daty, Integer id_client) {
+    public Vente (Integer id, Double prix_total, String daty, Integer id_client) throws Erreur {
         this.setId(id);
         this.setPrix_total(prix_total);
         setDaty(daty);
         this.setId_client(id_client);
+    }
+
+    public Vente (String daty, Integer id_client, Integer id_vendeur) throws Erreur {
+        setDaty(daty);
+        this.setId_client(id_client);
+        this.setId_vendeur(id_vendeur);
     }
 
             
@@ -58,8 +65,42 @@ public class Vente {
 
 
 
-    public void setDaty(String daty) {
-        this.daty = Date.valueOf(daty);
+    public String[][] conf_venteDetail (Connection conn, String[] id_produits, String[] qtts) 
+        throws SQLException, NullPointerException, NumberFormatException, Erreur {
+        
+        String[][] data = new String[id_produits.length][3];
+        ArrayList <Produit> produits = Produit.getAll(conn, this.getDaty());
+        
+        double prix_ttl = 0;
+
+        for (int i = 0; i < id_produits.length; i ++) {
+            Produit p = Produit.get_ProduitByID(produits, Integer.parseInt(id_produits[i]));
+            double qtt = Double.parseDouble(qtts[i]);
+            
+            if (p != null && qtt > 0 && p.getPrix() > 0) {
+                prix_ttl += qtt * p.getPrix(); 
+                data[i][0] = ""+p.getId();
+                data[i][1] = ""+qtt;
+                data[i][2] = ""+p.getPrix();
+            } else {
+                throw new Erreur("IL Y A UN PROBLEME POUR LA VENTE DU PRODUIT "+i);
+            }
+        }
+
+        this.setPrix_total(prix_ttl);
+        return data;
+    } 
+
+
+
+    public void setDaty(String daty) throws Erreur {
+        if (daty == null) throw new Erreur("DATE NE DOIS PAS ETRE NULL"); 
+        if (daty.isEmpty()) throw new Erreur("DATE NE DOIS PAS ETRE VIDE"); 
+        try {
+            this.daty = Date.valueOf(daty);
+        } catch (IllegalArgumentException e) {
+            throw new Erreur(e.getMessage());
+        }
     }
     public void setDaty(Date daty) {
         this.daty = daty;

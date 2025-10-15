@@ -1,3 +1,10 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
+<% 
+  String error = (String) request.getAttribute("error");
+%>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -31,7 +38,7 @@
               </div>
               <div class="col-lg-6 error-page-divider text-lg-left pl-lg-4">
                 <h2>SORRY!</h2>
-                <h3 class="font-weight-light">The page you’re looking for was not found.</h3>
+                <h3 class="font-weight-light"><%=error%></h3>
               </div>
             </div>
             <div class="row mt-5">

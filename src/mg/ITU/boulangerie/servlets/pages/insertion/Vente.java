@@ -30,7 +30,7 @@ public class Vente extends HttpServlet  {
             udb = Util_BD.get_Instance();
             conn = udb.connect();
 
-            ArrayList <Produit> produits = Produit.getAll(conn);
+            ArrayList <Produit> produits = Produit.getAll(conn, null);
             ArrayList <Client> clients = Client.getAll(conn);
             ArrayList <Vendeur> vendeurs = Vendeur.getAll(conn);
 
